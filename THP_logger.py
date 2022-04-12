@@ -3,8 +3,9 @@ from time import sleep, strftime, time
 import serial
 import sys, os
 
-COMPORT = 'COM4' #EDIT
-ser = serial.Serial(COMPORT, 115200, timeout=20)  # sets active serial port and baud rate
+RATE = 10
+COMPORT = 'COM6' #EDIT
+ser = serial.Serial(COMPORT, 115200, timeout=2)  # sets active serial port and baud rate
 
 ser.readline()
 ser.readline()
@@ -14,7 +15,7 @@ fileName = "sensorData.csv"
 filePath = os.getcwd().replace('\\', '/') + '/' + fileName
 
 errCount = 0  # counts how many errors have been thrown
-threshold = 10  # stops program if too many errors are thrown
+threshold = 100  # stops program if too many errors are thrown
 with open(filePath, "a") as log:    
   print('><><><><><><><><><><><><><><><')
   print('>---COLLECTING SENSOR DATA---<')
@@ -22,6 +23,7 @@ with open(filePath, "a") as log:
   print('Writing Data To: ' + filePath)
   while errCount < threshold:
     try:
+      ser.reset_input_buffer()
       # ensures data is being collected in correct order, throws assertion error otherwise
       t = ser.readline()
       assert str(t)[2:13] == 'Temperature'
@@ -44,6 +46,8 @@ with open(filePath, "a") as log:
       print(e)
       errCount += 1
       pass
+    sleep(RATE)
+    
 
   ser.close()     
     
