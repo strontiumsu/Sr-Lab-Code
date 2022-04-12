@@ -3,8 +3,8 @@ from time import sleep, strftime, time
 import serial
 import sys, os
 
-
-ser = serial.Serial('COM4', 115200, timeout=20)  # sets active serial port and baud rate, CHANGE to desired port
+COMPORT = 'COM4' #EDIT
+ser = serial.Serial(COMPORT, 115200, timeout=20)  # sets active serial port and baud rate
 
 ser.readline()
 ser.readline()
@@ -12,7 +12,6 @@ ser.readline()  # pulls out board acknowledgement inputs
 
 fileName = "sensorData.csv"
 filePath = os.getcwd().replace('\\', '/') + '/' + fileName
-# filePath = "C:/Users/Erik Porter/Desktop/SensorCode/humidity.csv"
 
 errCount = 0  # counts how many errors have been thrown
 threshold = 10  # stops program if too many errors are thrown
