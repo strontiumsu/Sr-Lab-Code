@@ -1,11 +1,9 @@
 #define WIFI_SSID     "wifi_name" // Add wifi name
 #define WIFI_PASSWORD "wifi_password" // Add wifi passowrd
 
-#define ID "room_comfort" // Add unique name for this sensor
-#define INTERVAL 5 //seconds
 
 #define GC_PORT 443
-#define GC_PROM_URL "prometheus-us-central1.grafana.net"
-#define GC_PROM_PATH "/api/prom/push"
-#define GC_PROM_USER ""
-#define GC_PROM_PASS ""
+#define GC_URL "https://logs-prod3.grafana.net"
+#define GC_PROM_PATH "/loki/api/v1/push"
+#define GC_USER "195044"
+#define GC_PROM_PASS "eyJrIjoiNTczOWVkNTczNmM1MjI2MDJkYzE1YWMxZDRmODgwZjViNmZhMjBlMyIsIm4iOiJMb2tpLVNyX2xvZyIsImlkIjo2MzAxNjV9"
